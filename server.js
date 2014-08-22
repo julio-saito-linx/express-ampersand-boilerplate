@@ -24,6 +24,7 @@ var fixPath = function (pathString) {
 // -----------------
 app.use(compress());
 app.use(serveStatic(fixPath('public')));
+app.use(serveStatic('/fonts/', __dirname + '/node_modules/bootstrap/dist/fonts/'));
 
 // we only want to expose tests in dev
 if (config.isDev) {
@@ -86,9 +87,11 @@ new Moonboots({
         main: fixPath('client/app.js'),
         developmentMode: config.isDev,
         libraries: [
+            __dirname + '/node_modules/jquery/dist/jquery.js',
+            __dirname + '/node_modules/bootstrap/dist/js/bootstrap.js'
         ],
         stylesheets: [
-            fixPath('public/css/bootstrap.css'),
+            __dirname + '/node_modules/bootstrap/dist/css/bootstrap.css',
             fixPath('public/css/app.css')
         ],
         browserify: {
